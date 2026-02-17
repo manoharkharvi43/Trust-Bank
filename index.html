@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrustBank - Your Trusted Digital Bank</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a56db' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 17l10 5 10-5M2 12l10 5 10-5M2 7l10 5 10-5M12 2v10'/%3E%3C/svg%3E" type="image/svg+xml">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        trustbankBlue: '#1a56db',
+                        trustbankLightBlue: '#e0f2fe',
+                        trustbankDarkBlue: '#1e40af'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hide-scroll-bar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-800 bg-gray-50">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+            <a href="https://www.trustbank.com" class="text-3xl font-bold text-trustbankBlue hover:text-trustbankDarkBlue transition duration-300">TrustBank</a>
+            <nav class="mt-4 md:mt-0">
+                <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8 text-lg">
+                    <li><a href="#hero" class="text-gray-700 hover:text-trustbankBlue font-medium transition duration-300">Home</a></li>
+                    <li><a href="#services" class="text-gray-700 hover:text-trustbankBlue font-medium transition duration-300">Services</a></li>
+                    <li><a href="#loans" class="text-gray-700 hover:text-trustbankBlue font-medium transition duration-300">Loans</a></li>
+                    <li><a href="#about" class="text-gray-700 hover:text-trustbankBlue font-medium transition duration-300">About</a></li>
+                    <li><button id="contactUsBtn" class="text-gray-700 hover:text-trustbankBlue font-medium transition duration-300 focus:outline-none">Contact</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="bg-trustbankBlue text-white py-20 md:py-32 text-center">
+            <div class="container mx-auto px-4">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">Your Trusted Digital Bank</h1>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-10">
+                    Experience secure, fast, and convenient banking from anywhere, anytime. TrustBank is committed to your financial well-being.
+                </p>
+                <button id="heroContactBtn" class="bg-white text-trustbankBlue hover:bg-trustbankLightBlue px-8 py-4 rounded-full text-xl font-semibold shadow-lg transition duration-300 focus:outline-none focus:ring-4 focus:ring-trustbankLightBlue focus:ring-opacity-75">
+                    Contact Us
+                </button>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-16 md:py-24 bg-trustbankLightBlue">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-trustbankDarkBlue mb-12">Our Services</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Service Card 1 -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                        <div class="text-trustbankBlue mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-center mb-3">Savings Accounts</h3>
+                        <p class="text-gray-600 text-center">Grow your wealth with competitive interest rates and flexible savings options.</p>
+                    </div>
+
+                    <!-- Service Card 2 -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                        <div class="text-trustbankBlue mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V3m0 9v3m0 3.01V21M12 6.99h4.99M12 17.01h4.99M7.01 12H3m0 0h3.01M7.01 12c0 1.11.402 2.08 1 2.599M7.01 12c0-1.11.402-2.08 1-2.599M17 12h3m0 0h-3" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-center mb-3">Personal Loans</h3>
+                        <p class="text-gray-600 text-center">Achieve your dreams with flexible personal loans tailored to your needs.</p>
+                    </div>
+
+                    <!-- Service Card 3 -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                        <div class="text-trustbankBlue mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-center mb-3">Credit Cards</h3>
+                        <p class="text-gray-600 text-center">Enjoy rewards and convenience with our range of credit card options.</p>
+                    </div>
+
+                    <!-- Service Card 4 -->
+                    <div class="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1">
+                        <div class="text-trustbankBlue mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-1.25-3M15 10V5a3 3 0 00-3-3H6a3 3 0 00-3 3v5m12 0h2a2 2 0 012 2v5a2 2 0 01-2 2h-2M7 12H5a2 2 0 00-2 2v5a2 2 0 002 2h2m0-7h3m-3 0a1 1 0 01-1-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 01-1 1h-2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-center mb-3">Digital Banking</h3>
+                        <p class="text-gray-600 text-center">Manage your accounts securely online and on the go with our mobile app.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dummy Loans Section -->
+        <section id="loans" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-trustbankDarkBlue mb-6">Loans for Every Need</h2>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-8">Whether you're buying a home, financing education, or starting a business, TrustBank offers a variety of loan products with competitive rates and flexible terms. Speak to our advisors to find the perfect solution for you.</p>
+                <a href="#loans" class="inline-block bg-trustbankBlue text-white hover:bg-trustbankDarkBlue px-8 py-3 rounded-full text-lg font-semibold transition duration-300 focus:outline-none focus:ring-4 focus:ring-trustbankBlue focus:ring-opacity-75">Explore Loan Options</a>
+            </div>
+        </section>
+
+        <!-- Dummy About Section -->
+        <section id="about" class="py-16 md:py-24 bg-trustbankLightBlue">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-trustbankDarkBlue mb-6">About TrustBank</h2>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-8">TrustBank is a leading digital financial institution dedicated to providing innovative and secure banking solutions. With a focus on customer satisfaction and technological advancement, we empower individuals and businesses to achieve their financial goals.</p>
+                <a href="#about" class="inline-block bg-trustbankBlue text-white hover:bg-trustbankDarkBlue px-8 py-3 rounded-full text-lg font-semibold transition duration-300 focus:outline-none focus:ring-4 focus:ring-trustbankBlue focus:ring-opacity-75">Learn More About Us</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Contact Form Modal -->
+    <div id="contactModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white p-8 rounded-lg shadow-xl max-w-md w-full relative transform transition-all duration-300 scale-95 opacity-0" id="modalContent">
+            <button id="closeModalBtn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl font-bold focus:outline-none">&times;</button>
+            <h2 class="text-2xl font-bold text-trustbankBlue mb-6 text-center">Contact TrustBank</h2>
+            <p class="text-sm text-gray-600 mb-6 text-center border border-yellow-300 bg-yellow-50 p-3 rounded-md">This is a demo/test form. No real banking operations will be performed.</p>
+            
+            <form id="contactForm" class="space-y-4">
+                <div>
+                    <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-trustbankBlue focus:border-trustbankBlue sm:text-sm">
+                </div>
+                <div>
+                    <label for="mobileNumber" class="block text-sm font-medium text-gray-700">Mobile Number</label>
+                    <input type="tel" id="mobileNumber" name="mobileNumber" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-trustbankBlue focus:border-trustbankBlue sm:text-sm">
+                    <p id="mobileError" class="text-red-500 text-xs mt-1 hidden">Please enter a valid mobile number (digits only).</p>
+                </div>
+                <div>
+                    <label for="phoneNumber" class="block text-sm font-medium text-gray-700">Phone Number (Optional)</label>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-trustbankBlue focus:border-trustbankBlue sm:text-sm">
+                    <p id="phoneError" class="text-red-500 text-xs mt-1 hidden">Please enter a valid phone number (digits only).</p>
+                </div>
+                <div>
+                    <label for="emailId" class="block text-sm font-medium text-gray-700">Email ID</label>
+                    <input type="email" id="emailId" name="emailId" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-trustbankBlue focus:border-trustbankBlue sm:text-sm">
+                    <p id="emailError" class="text-red-500 text-xs mt-1 hidden">Please enter a valid email address.</p>
+                </div>
+                <div>
+                    <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+                    <input type="text" id="city" name="city" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-trustbankBlue focus:border-trustbankBlue sm:text-sm">
+                </div>
+                <button type="submit" class="w-full bg-trustbankBlue text-white py-2 px-4 border border-transparent rounded-md shadow-sm text-base font-medium hover:bg-trustbankDarkBlue focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-trustbankBlue transition duration-300">
+                    Submit
+                </button>
+            </form>
+            <div id="formSuccess" class="mt-6 p-4 bg-green-100 text-green-700 rounded-md hidden">
+                Thank you for contacting TrustBank! We will get back to you shortly.
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-trustbankBlue text-white py-10">
+        <div class="container mx-auto px-4 text-center">
+            <p class="mb-4 text-lg font-semibold">TrustBank</p>
+            <p class="mb-2">123 Bank Street, Financial District, Cityville, 12345</p>
+            <p class="mb-2">Email: info@trustbank.com | Phone: (123) 456-7890</p>
+            <p class="mt-6 text-sm text-trustbankLightBlue">
+                Disclaimer: This is a dummy banking website for testing and training purposes only. It does not offer real financial services.
+            </p>
+            <p class="mt-2 text-sm">&copy; 2023 TrustBank. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const contactModal = document.getElementById('contactModal');
+        const modalContent = document.getElementById('modalContent');
+        const contactUsBtn = document.getElementById('contactUsBtn');
+        const heroContactBtn = document.getElementById('heroContactBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const contactForm = document.getElementById('contactForm');
+        const formSuccess = document.getElementById('formSuccess');
+
+        function openModal() {
+            contactModal.classList.remove('hidden');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 50);
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+        }
+
+        function closeModal() {
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                contactModal.classList.add('hidden');
+            }, 300); // Match transition duration
+            document.body.style.overflow = ''; // Restore scrolling
+            formSuccess.classList.add('hidden'); // Hide success message on close
+            contactForm.reset(); // Reset form fields
+            // Hide all error messages
+            document.getElementById('mobileError').classList.add('hidden');
+            document.getElementById('phoneError').classList.add('hidden');
+            document.getElementById('emailError').classList.add('hidden');
+        }
+
+        contactUsBtn.addEventListener('click', openModal);
+        heroContactBtn.addEventListener('click', openModal);
+        closeModalBtn.addEventListener('click', closeModal);
+
+        // Close modal when clicking outside the content
+        contactModal.addEventListener('click', (e) => {
+            if (e.target === contactModal) {
+                closeModal();
+            }
+        });
+
+        // Basic Form Validation
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            let isValid = true;
+
+            // Clear previous errors
+            document.getElementById('mobileError').classList.add('hidden');
+            document.getElementById('phoneError').classList.add('hidden');
+            document.getElementById('emailError').classList.add('hidden');
+
+            // Validate Mobile Number
+            const mobileNumber = document.getElementById('mobileNumber').value;
+            if (!/^[0-9]{7,15}$/.test(mobileNumber)) { // Basic check for 7-15 digits
+                document.getElementById('mobileError').classList.remove('hidden');
+                isValid = false;
+            }
+
+            // Validate Phone Number (optional, but if entered, validate format)
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            if (phoneNumber && !/^[0-9]{7,15}$/.test(phoneNumber)) {
+                document.getElementById('phoneError').classList.remove('hidden');
+                isValid = false;
+            }
+
+            // Validate Email ID
+            const emailId = document.getElementById('emailId').value;
+            if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailId)) {
+                document.getElementById('emailError').classList.remove('hidden');
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Simulate form submission
+                console.log('Form Submitted:', {
+                    fullName: document.getElementById('fullName').value,
+                    mobileNumber: mobileNumber,
+                    phoneNumber: phoneNumber,
+                    emailId: emailId,
+                    city: document.getElementById('city').value
+                });
+                contactForm.classList.add('hidden'); // Hide form
+                formSuccess.classList.remove('hidden'); // Show success message
+
+                // Optionally, hide success message and reset form after a few seconds
+                setTimeout(() => {
+                    contactForm.classList.remove('hidden');
+                    formSuccess.classList.add('hidden');
+                    contactForm.reset();
+                    closeModal();
+                }, 3000);
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return; // Don't scroll for '#' links
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

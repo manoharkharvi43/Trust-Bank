@@ -78,6 +78,14 @@
             </li>
             <li>
               <button
+                id="raiseConcernBtn"
+                class="text-gray-700 hover:text-trustbankBlue font-medium transition duration-300 focus:outline-none"
+              >
+                Raise Concern
+              </button>
+            </li>
+            <li>
+              <button
                 id="contactUsBtn"
                 class="text-gray-700 hover:text-trustbankBlue font-medium transition duration-300 focus:outline-none"
               >
@@ -103,12 +111,20 @@
             Experience secure, fast, and convenient banking from anywhere,
             anytime. TrustBank is committed to your financial well-being.
           </p>
-          <button
-            id="heroContactBtn"
-            class="bg-white text-trustbankBlue hover:bg-trustbankLightBlue px-8 py-4 rounded-full text-xl font-semibold shadow-lg transition duration-300 focus:outline-none focus:ring-4 focus:ring-trustbankLightBlue focus:ring-opacity-75"
-          >
-            Contact Us
-          </button>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              id="heroContactBtn"
+              class="bg-white text-trustbankBlue hover:bg-trustbankLightBlue px-8 py-4 rounded-full text-xl font-semibold shadow-lg transition duration-300 focus:outline-none focus:ring-4 focus:ring-trustbankLightBlue focus:ring-opacity-75"
+            >
+              Contact Us
+            </button>
+            <button
+              id="heroRaiseConcernBtn"
+              class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-trustbankBlue px-8 py-4 rounded-full text-xl font-semibold shadow-lg transition duration-300 focus:outline-none focus:ring-4 focus:ring-white focus:ring-opacity-75"
+            >
+              Raise a Concern
+            </button>
+          </div>
         </div>
       </section>
 
@@ -287,13 +303,11 @@
       id="contactModal"
       class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden"
     >
-      <!-- Modal box — grows when iframe is shown -->
       <div
         id="modalContent"
         class="bg-white rounded-lg shadow-xl w-full relative transform transition-all duration-300 scale-95 opacity-0"
         style="max-width: 28rem"
       >
-        <!-- Close button -->
         <button
           id="closeModalBtn"
           class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl font-bold focus:outline-none z-10"
@@ -401,11 +415,63 @@
 
         <!-- ── IFRAME VIEW (shown after successful submit) ── -->
         <div id="iframeView" class="hidden">
-          <!-- Replace the src value below with your actual URL -->
           <iframe
             id="customIframe"
-            src="https://d18adlsf7yn9zn.cloudfront.net/blutic-consent/?consentId=699e8dd9c1a30425ebe7f572"
+            src="https://d18adlsf7yn9zn.cloudfront.net/blutic-consent?consentId=699e8dd9c1a30425ebe7f572"
             class="w-full rounded-lg"
+            style="height: 700px; border: none; display: block"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── RAISE CONCERN MODAL ── -->
+    <div
+      id="raiseConcernModal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden"
+    >
+      <div
+        id="raiseConcernModalContent"
+        class="bg-white rounded-xl shadow-2xl w-full relative transform transition-all duration-300 scale-95 opacity-0 overflow-hidden"
+        style="max-width: 62rem"
+      >
+        <!-- Modal Header -->
+        <div
+          class="bg-trustbankBlue px-6 py-4 flex items-center justify-between"
+        >
+          <div class="flex items-center gap-3">
+            <!-- Alert icon -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 9v2m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"
+              />
+            </svg>
+            <h2 class="text-xl font-bold text-white">Raise a Concern</h2>
+          </div>
+          <button
+            id="closeRaiseConcernBtn"
+            class="text-white hover:text-trustbankLightBlue text-3xl font-bold focus:outline-none leading-none"
+          >
+            &times;
+          </button>
+        </div>
+
+        <!-- Iframe Container -->
+        <div class="w-full">
+          <iframe
+            id="raiseConcernIframe"
+            src="https://d18adlsf7yn9zn.cloudfront.net/blutic-consent/dsar?userId=1234&email=manohar@neokred.tech&phoneNumber=9011676616"
+            class="w-full"
             style="height: 700px; border: none; display: block"
             allowfullscreen
           ></iframe>
@@ -430,6 +496,7 @@
     </footer>
 
     <script>
+      /* ===== CONTACT MODAL ===== */
       const contactModal = document.getElementById("contactModal");
       const modalContent = document.getElementById("modalContent");
       const contactUsBtn = document.getElementById("contactUsBtn");
@@ -440,7 +507,6 @@
       const iframeView = document.getElementById("iframeView");
       const customIframe = document.getElementById("customIframe");
 
-      /* ---------- helpers ---------- */
       function openModal() {
         contactModal.classList.remove("hidden");
         setTimeout(() => {
@@ -453,60 +519,45 @@
       function closeModal() {
         modalContent.classList.remove("scale-100", "opacity-100");
         modalContent.classList.add("scale-95", "opacity-0");
-
         setTimeout(() => {
           contactModal.classList.add("hidden");
-
-          // Reset back to form view
           iframeView.classList.add("hidden");
           formView.classList.remove("hidden");
           modalContent.style.maxWidth = "28rem";
-
-          // Reset form
           contactForm.reset();
           ["mobileError", "phoneError", "emailError"].forEach((id) =>
             document.getElementById(id).classList.add("hidden"),
           );
         }, 300);
-
         document.body.style.overflow = "";
       }
 
-      /* ---------- open / close bindings ---------- */
       contactUsBtn.addEventListener("click", openModal);
       heroContactBtn.addEventListener("click", openModal);
       closeModalBtn.addEventListener("click", closeModal);
-
       contactModal.addEventListener("click", (e) => {
         if (e.target === contactModal) closeModal();
       });
 
-      /* ---------- form validation & submit ---------- */
       contactForm.addEventListener("submit", function (e) {
         e.preventDefault();
-
         let isValid = true;
-
-        // Clear previous errors
         ["mobileError", "phoneError", "emailError"].forEach((id) =>
           document.getElementById(id).classList.add("hidden"),
         );
 
-        // Validate Mobile Number
         const mobileNumber = document.getElementById("mobileNumber").value;
         if (!/^[0-9]{7,15}$/.test(mobileNumber)) {
           document.getElementById("mobileError").classList.remove("hidden");
           isValid = false;
         }
 
-        // Validate Phone Number (optional)
         const phoneNumber = document.getElementById("phoneNumber").value;
         if (phoneNumber && !/^[0-9]{7,15}$/.test(phoneNumber)) {
           document.getElementById("phoneError").classList.remove("hidden");
           isValid = false;
         }
 
-        // Validate Email
         const emailId = document.getElementById("emailId").value;
         if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailId)) {
           document.getElementById("emailError").classList.remove("hidden");
@@ -514,25 +565,51 @@
         }
 
         if (isValid) {
-          console.log("Form Submitted:", {
-            fullName: document.getElementById("fullName").value,
-            mobileNumber: mobileNumber,
-            phoneNumber: phoneNumber,
-            emailId: emailId,
-            city: document.getElementById("city").value,
-          });
-
-          // Switch to iframe view — widen the modal box to fit the iframe
           formView.classList.add("hidden");
-          modalContent.style.maxWidth = "56rem"; // wider for iframe
+          modalContent.style.maxWidth = "56rem";
           iframeView.classList.remove("hidden");
-
-          // ↓ Optionally set the iframe src dynamically:
-          // customIframe.src = "https://qa-consent-manager.blutic.club:9444/iframe/691580117368b0ddeb3e7ebc";
         }
       });
 
-      /* ---------- smooth scrolling ---------- */
+      /* ===== RAISE CONCERN MODAL ===== */
+      const raiseConcernModal = document.getElementById("raiseConcernModal");
+      const raiseConcernModalContent = document.getElementById(
+        "raiseConcernModalContent",
+      );
+      const raiseConcernBtn = document.getElementById("raiseConcernBtn");
+      const heroRaiseConcernBtn = document.getElementById(
+        "heroRaiseConcernBtn",
+      );
+      const closeRaiseConcernBtn = document.getElementById(
+        "closeRaiseConcernBtn",
+      );
+
+      function openRaiseConcernModal() {
+        raiseConcernModal.classList.remove("hidden");
+        setTimeout(() => {
+          raiseConcernModalContent.classList.remove("scale-95", "opacity-0");
+          raiseConcernModalContent.classList.add("scale-100", "opacity-100");
+        }, 50);
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeRaiseConcernModal() {
+        raiseConcernModalContent.classList.remove("scale-100", "opacity-100");
+        raiseConcernModalContent.classList.add("scale-95", "opacity-0");
+        setTimeout(() => {
+          raiseConcernModal.classList.add("hidden");
+        }, 300);
+        document.body.style.overflow = "";
+      }
+
+      raiseConcernBtn.addEventListener("click", openRaiseConcernModal);
+      heroRaiseConcernBtn.addEventListener("click", openRaiseConcernModal);
+      closeRaiseConcernBtn.addEventListener("click", closeRaiseConcernModal);
+      raiseConcernModal.addEventListener("click", (e) => {
+        if (e.target === raiseConcernModal) closeRaiseConcernModal();
+      });
+
+      /* ===== SMOOTH SCROLLING ===== */
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           e.preventDefault();
